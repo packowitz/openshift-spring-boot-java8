@@ -37,12 +37,12 @@ This is an example how to setup an openshift application using Java8 and Spring 
    
    a) create <a href="https://github.com/packowitz/openshift-spring-boot-java8/blob/master/.openshift/action_hooks/build">./openshift/action_hooks/build</a>.
       
-      on some systems you need to make it executable with: git update-index --chmod=+x .openshift/action_hooks/build
+   on some systems you need to make it executable with: git update-index --chmod=+x .openshift/action_hooks/build
       
-      In the build step we already have to care about that we execute the mvn package with java8 because we have the java version named in our <a href="https://github.com/packowitz/openshift-spring-boot-java8/blob/master/pom.xml">pom.xml</a> file.
-      Openshift has already an installed Java8 but in the built-in maven the dependency to Java7 is hard wired. So we need to download our own maven with wget and store it in our $OPENSHIFT_DATA_DIR so that it gets not lost the next time we push something to our repo.
-      Then we need to create an .m2/repository directory (if it's not already exists) and write a simple settings.xml in the .m2 directory.
-      Then we set the JAVA_HOME to Java8 and execute our freshly downloaded mvn clean package
+   In the build step we already have to care about that we execute the mvn package with java8 because we have the java version named in our <a href="https://github.com/packowitz/openshift-spring-boot-java8/blob/master/pom.xml">pom.xml</a> file.
+   Openshift has already an installed Java8 but in the built-in maven the dependency to Java7 is hard wired. So we need to download our own maven with wget and store it in our $OPENSHIFT_DATA_DIR so that it gets not lost the next time we push something to our repo.
+   Then we need to create an .m2/repository directory (if it's not already exists) and write a simple settings.xml in the .m2 directory.
+   Then we set the JAVA_HOME to Java8 and execute our freshly downloaded mvn clean package
       
    b) edit the <a href="https://github.com/packowitz/openshift-spring-boot-java8/blob/master/.openshift/action_hooks/start">.openshift/action_hooks/start</a> action hook to start our spring boot application using the installed java8
    
