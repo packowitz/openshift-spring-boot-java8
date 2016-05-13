@@ -1,0 +1,16 @@
+#!/bin/bash
+cd $OPENSHIFT_DATA_DIR
+
+if [ ! -d apache-maven-3.3.9 ]; then
+  wget http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+  tar -zxf apache-maven-3.3.9-bin.tar.gz
+fi
+
+export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0
+export PATH=$JAVA_HOME/bin:$PATH
+mkdir -p $OPENSHIFT_DATA_DIR/.m2
+mkdir -p $OPENSHIFT_DATA_DIR/.m2/repository
+echo -e  "<settings>\n<localRepository>$OPENSHIFT_DATA_DIR/.m2/repository</localRepository>\n</settings>\n" > $OPENSHIFT_DATA_DIR/.m2/settings.xml
+
+cd $OPENSHIFT_REPO_DIR
+$OPENSHIFT_DATA_DIR/apache-maven-3.3.9/bin/mvn clean package -s $OPENSHIFT_DATA_DIR/.m2/settings.xml -DskipTests=true
