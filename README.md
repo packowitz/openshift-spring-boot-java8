@@ -8,10 +8,10 @@ This is an example how to setup an openshift application using Java8 and Spring 
    Go to a command line where git is available and run the command
 
 3. Go to the directory. There you'll find these directories:
-   |-.git
-   |-.openshift
-   |-diy
-   |-misc
+   .git/
+   .openshift/
+   diy/
+   misc/
    You can delete the diy and the misc directory.
 
 4. Making a spring boot application out of that:
