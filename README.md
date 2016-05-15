@@ -49,3 +49,5 @@ This is an example how to setup an openshift application using Java8 and Spring 
    c) edit the <a href="https://github.com/packowitz/openshift-spring-boot-java8/blob/master/.openshift/action_hooks/stop">.openshift/action_hooks/stop</a> action hook to look for the java process to kill it
    
 6. commit and push your changes to openshift. After that you should be able to post a user to http://test-youraccountname.rhcloud.com/user and retrieve it back with http://test-youraccountname.rhcloud.com/user/{id}
+
+7. If you want to access your application from a cross origin just add a <a href="https://github.com/packowitz/openshift-spring-boot-java8/blob/master/src/main/java/com/example/CorsFilter.java">CorsFilter</a> to your classpath and it will automaticly added by spring boot and will allow cross origin request.
